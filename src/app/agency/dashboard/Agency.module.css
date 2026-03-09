@@ -140,7 +140,7 @@
 .inputGroup label {
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: var(--text-muted);
 }
 
 .inputGroup input,
@@ -149,6 +149,7 @@
     border-radius: 0.5rem;
     border: 1px solid var(--border);
     background: var(--background);
+    color: var(--foreground);
     outline: none;
     font-family: inherit;
     transition: all 0.2s ease;

@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import CarCard from '@/components/CarCard';
 import styles from './Cars.module.css';
 
-export default function CarsPage() {
+function CarsContent() {
     const searchParams = useSearchParams();
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -77,5 +77,13 @@ export default function CarsPage() {
                 )}
             </div>
         </div>
+    );
+}
+
+export default function CarsPage() {
+    return (
+        <Suspense fallback={<div className="container" style={{ paddingTop: '10rem' }}>Loading Marketplace...</div>}>
+            <CarsContent />
+        </Suspense>
     );
 }

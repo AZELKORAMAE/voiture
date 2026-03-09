@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import styles from '../register/Register.module.css'; // Reusing styles
 import Link from 'next/link';
 
-export default function Login() {
+function LoginContent() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -88,5 +88,13 @@ export default function Login() {
                 </form>
             </div>
         </div>
+    );
+}
+
+export default function Login() {
+    return (
+        <Suspense fallback={<div className="container" style={{ paddingTop: '10rem' }}>Loading Sign In...</div>}>
+            <LoginContent />
+        </Suspense>
     );
 }

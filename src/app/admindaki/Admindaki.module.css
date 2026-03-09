@@ -1,0 +1,161 @@
+.container {
+    padding: 10rem 0 5rem;
+    min-height: 100vh;
+    background-color: var(--primary);
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.title span {
+    color: var(--accent);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.tabBtn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-sm);
+}
+
+.tabBtn:hover {
+    color: var(--text-light);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.activeTab {
+    color: var(--accent);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.table th {
+    text-align: left;
+    padding: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
+}
+
+.statusBadge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.statusApproved {
+    background: rgba(0, 255, 0, 0.1);
+    color: #00ff00;
+}
+
+.statusPending {
+    background: rgba(255, 165, 0, 0.1);
+    color: #ffa500;
+}
+
+.statusRejected {
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+}
+
+.statusSuspended {
+    background: rgba(128, 128, 128, 0.2);
+    color: #808080;
+}
+
+.actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.actionBtn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.approve {
+    background: #28a745;
+    color: white;
+}
+
+.reject {
+    background: #fd7e14;
+    color: white;
+}
+
+.suspend {
+    background: #6c757d;
+    color: white;
+}
+
+.delete {
+    background: #dc3545;
+    color: white;
+}
+
+.view {
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.actionBtn:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+
+.bookingDetail {
+    font-size: 0.9rem;
+}
+
+.bookingDetail span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}

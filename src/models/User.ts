@@ -11,8 +11,8 @@ const UserSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['PENDING', 'APPROVED', 'REJECTED'],
-        default: 'APPROVED' // Customers are approved by default
+        enum: ['PENDING', 'APPROVED', 'REJECTED', 'SUSPENDED', 'DELETED'],
+        default: 'APPROVED'
     }
 }, { timestamps: true });
 

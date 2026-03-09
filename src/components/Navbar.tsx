@@ -19,7 +19,7 @@ const Navbar = () => {
                     <div className={styles.navLinks}>
                         <Link href="/cars">Find a Car</Link>
                         <Link href="/agencies">Agencies</Link>
-                        {user?.role === 'ADMIN' && <Link href="/admin/dashboard">Admin Panel</Link>}
+                        {user?.role === 'ADMIN' && <Link href="/admindaki">Daki Console</Link>}
                         {user?.role === 'AGENCY' && <Link href="/agency/dashboard">Agency Panel</Link>}
                     </div>
 

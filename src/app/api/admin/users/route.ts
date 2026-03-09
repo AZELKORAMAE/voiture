@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
-import Agency from '@/models/Agency';
+import User from '@/models/User';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/authOptions';
 
@@ -12,13 +12,8 @@ export async function GET(req: NextRequest) {
         }
 
         await dbConnect();
-
-        const status = req.nextUrl.searchParams.get('status');
-        const query = status ? { isApproved: status === 'approved' } : {};
-
-        const agencies = await Agency.find(query).populate('ownerId', 'name email');
-
-        return NextResponse.json(agencies);
+        const users = await User.find({}).select('-password').sort({ createdAt: -1 });
+        return NextResponse.json(users);
     } catch (error) {
         return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
     }
@@ -31,13 +26,15 @@ export async function PATCH(req: NextRequest) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
         }
 
-        const { agencyId, isApproved } = await req.json();
-
+        const { userId, status, role } = await req.json();
         await dbConnect();
 
-        const agency = await Agency.findByIdAndUpdate(agencyId, { isApproved }, { new: true });
+        const update: any = {};
+        if (status) update.status = status;
+        if (role) update.role = role;
 
-        return NextResponse.json({ message: 'Agency status updated', agency });
+        const user = await User.findByIdAndUpdate(userId, update, { new: true });
+        return NextResponse.json({ message: 'User updated successfully', user });
     } catch (error) {
         return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
     }
@@ -50,13 +47,10 @@ export async function DELETE(req: NextRequest) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
         }
 
-        const { agencyId } = await req.json();
-
+        const { userId } = await req.json();
         await dbConnect();
-
-        await Agency.findByIdAndDelete(agencyId);
-
-        return NextResponse.json({ message: 'Agency deleted successfully' });
+        await User.findByIdAndDelete(userId);
+        return NextResponse.json({ message: 'User deleted successfully' });
     } catch (error) {
         return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
     }

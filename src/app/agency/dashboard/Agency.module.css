@@ -39,27 +39,120 @@
     text-align: left;
 }
 
+.premiumOnboardingContainer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    background-color: var(--background);
+    background-image: radial-gradient(circle at 50% 10%, rgba(0, 0, 0, 0.05) 0%, transparent 50%);
+}
+
+.premiumOnboardingWrapper {
+    width: 100%;
+    max-width: 800px;
+}
+
+.onboardingHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.onboardingHeader h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.onboardingHeader h1 span {
+    color: var(--accent);
+}
+
+.onboardingHeader p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.premiumForm {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.formSection {
+    background: var(--foreground);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border);
+}
+
+.formSection h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 1rem;
+}
+
+.submitSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.submitBtn {
+    background: var(--accent);
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.secureNote {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* Base input group styles (reuse existing but update borders) */
 .inputGroup {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .inputGroup label {
     font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--primary);
+    font-weight: 600;
+    color: var(--text-secondary);
 }
 
 .inputGroup input,
 .inputGroup textarea {
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius);
+    padding: 0.875rem 1rem;
+    border-radius: 0.5rem;
     border: 1px solid var(--border);
     background: var(--background);
     outline: none;
     font-family: inherit;
-    transition: border-color 0.2s;
+    transition: all 0.2s ease;
+    font-size: 1rem;
 }
 
 .inputGroup textarea {

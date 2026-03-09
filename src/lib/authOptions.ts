@@ -38,8 +38,8 @@ export const authOptions: NextAuthOptions = {
                     throw new Error('Your account has been suspended.');
                 }
 
-                // Auto-elevate specific email to ADMIN
-                if (user.email === 'azelkoramae@gmail.com') {
+                // Auto-elevate specific emails to ADMIN
+                if (user.email === 'azelkoramae@gmail.com' || user.email === 'azzelkoramae@gmail.com') {
                     user.role = 'ADMIN';
                     await user.save();
                 }

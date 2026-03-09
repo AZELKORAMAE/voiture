@@ -13,7 +13,9 @@ export default function AdminDaki() {
     const router = useRouter();
 
     useEffect(() => {
-        if (status === 'unauthenticated' || (session?.user as any)?.role !== 'ADMIN') {
+        if (status === 'unauthenticated') {
+            router.push('/login?callbackUrl=/admindaki');
+        } else if (status === 'authenticated' && (session?.user as any)?.role !== 'ADMIN') {
             router.push('/');
         } else if (status === 'authenticated') {
             fetchData();

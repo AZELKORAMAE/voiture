@@ -28,7 +28,9 @@ export default function AgencyDashboard() {
     });
 
     useEffect(() => {
-        if (status === 'unauthenticated' || (session?.user as any)?.role !== 'AGENCY') {
+        if (status === 'unauthenticated') {
+            router.push('/login?callbackUrl=/agency/dashboard');
+        } else if (status === 'authenticated' && (session?.user as any)?.role !== 'AGENCY') {
             router.push('/');
         } else if (status === 'authenticated') {
             fetchAgency();

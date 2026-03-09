@@ -11,6 +11,7 @@ export default function AgencyDashboard() {
     const { data: session, status } = useSession();
     const [agency, setAgency] = useState<any>(null);
     const [cars, setCars] = useState<any[]>([]);
+    const [bookings, setBookings] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [showAddModal, setShowAddModal] = useState(false);
     const router = useRouter();
@@ -40,6 +41,7 @@ export default function AgencyDashboard() {
                 setAgency(data);
                 if (data && data.isApproved) {
                     fetchCars();
+                    fetchBookings();
                 }
             }
         } finally {
@@ -56,6 +58,18 @@ export default function AgencyDashboard() {
             }
         } catch (error) {
             console.error('Failed to fetch cars');
+        }
+    };
+
+    const fetchBookings = async () => {
+        try {
+            const res = await fetch('/api/agency/bookings');
+            if (res.ok) {
+                const data = await res.json();
+                setBookings(data);
+            }
+        } catch (error) {
+            console.error('Failed to fetch bookings');
         }
     };
 
@@ -187,7 +201,41 @@ export default function AgencyDashboard() {
 
                     <div className={styles.section}>
                         <h3>Recent Bookings</h3>
-                        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '1rem' }}>No recent bookings to display.</p>
+                        {bookings.length === 0 ? (
+                            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '1rem' }}>No recent bookings to display.</p>
+                        ) : (
+                            <table className={styles.table} style={{ marginTop: '1rem' }}>
+                                <thead>
+                                    <tr>
+                                        <th>Car</th>
+                                        <th>Customer</th>
+                                        <th>Dates</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {bookings.map((booking: any) => (
+                                        <tr key={booking._id}>
+                                            <td>{booking.carId?.make} {booking.carId?.model}</td>
+                                            <td>{booking.customerId?.name}<br /><span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{booking.customerId?.email}</span></td>
+                                            <td>
+                                                <div style={{ fontSize: '0.9rem' }}>
+                                                    From: {new Date(booking.startDate).toLocaleDateString()}<br />
+                                                    To: {new Date(booking.endDate).toLocaleDateString()}
+                                                </div>
+                                            </td>
+                                            <td style={{ fontWeight: '600', color: 'var(--accent)' }}>${booking.totalAmount}</td>
+                                            <td>
+                                                <span style={{ padding: '0.25rem 0.5rem', borderRadius: '1rem', background: '#e6f7eb', color: '#1a7f37', fontSize: '0.8rem', fontWeight: 600 }}>
+                                                    {booking.status}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )}
                     </div>
                 </div>
             </div>

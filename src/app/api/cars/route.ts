@@ -8,6 +8,7 @@ export async function GET(req: NextRequest) {
     try {
         const { searchParams } = new URL(req.url);
         const category = searchParams.get('category');
+        const agencyId = searchParams.get('agencyId');
         const lat = searchParams.get('lat');
         const lng = searchParams.get('lng');
         const distance = searchParams.get('distance') || '50000'; // Default 50km
@@ -16,6 +17,7 @@ export async function GET(req: NextRequest) {
 
         let query: any = {};
         if (category) query.category = category;
+        if (agencyId) query.agencyId = agencyId;
 
         // Location search
         if (lat && lng) {

@@ -21,6 +21,7 @@ const Navbar = () => {
                         <Link href="/agencies">Agencies</Link>
                         {user?.role === 'ADMIN' && <Link href="/admindaki">Daki Console</Link>}
                         {user?.role === 'AGENCY' && <Link href="/agency/dashboard">Agency Panel</Link>}
+                        {user && <Link href="/bookings">My Bookings</Link>}
                     </div>
 
                     <div className={styles.navActions}>

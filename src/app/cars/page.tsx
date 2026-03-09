@@ -10,10 +10,11 @@ function CarsContent() {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
     const [category, setCategory] = useState(searchParams.get('category') || '');
+    const agencyParam = searchParams.get('agency');
 
     useEffect(() => {
         fetchCars();
-    }, [searchParams, category]);
+    }, [searchParams, category, agencyParam]);
 
     const fetchCars = async () => {
         setLoading(true);
@@ -22,6 +23,7 @@ function CarsContent() {
             const lng = searchParams.get('lng');
             let url = `/api/cars?`;
             if (category) url += `category=${category}&`;
+            if (agencyParam) url += `agencyId=${agencyParam}&`;
             if (lat && lng) url += `lat=${lat}&lng=${lng}&`;
 
             const res = await fetch(url);

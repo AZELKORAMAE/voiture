@@ -1,0 +1,64 @@
+.navbar {
+    padding: 1.5rem 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: transparent;
+}
+
+.navContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--primary);
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.navLinks {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.navLinks a {
+    font-weight: 500;
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+.navLinks a:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.navActions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.loginBtn {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.loginBtn:hover {
+    color: var(--accent);
+}
+
+[data-theme='dark'] .logo,
+[data-theme='dark'] .navLinks a,
+[data-theme='dark'] .loginBtn {
+    color: #ffffff;
+}

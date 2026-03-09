@@ -1,0 +1,61 @@
+.container {
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+    min-height: 100vh;
+    background-color: var(--background);
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.title span {
+    color: var(--accent);
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.filters button {
+    padding: 0.6rem 1.5rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-weight: 600;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.filters button.activeFilter {
+    background: var(--accent);
+    color: var(--primary);
+    border-color: var(--accent);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.loader,
+.empty {
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.empty h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty p {
+    color: var(--text-muted);
+}

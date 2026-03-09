@@ -1,0 +1,95 @@
+.onboardingContainer,
+.pendingContainer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8rem;
+    background-color: var(--background);
+}
+
+.onboardingCard {
+    background: var(--surface);
+    padding: 3rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.onboardingCard h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.onboardingCard h1 span {
+    color: var(--accent);
+}
+
+.onboardingCard p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.inputGroup label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--background);
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.inputGroup textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+    border-color: var(--accent);
+}
+
+.geoInputs {
+    display: flex;
+    gap: 1rem;
+}
+
+.geoInputs>div {
+    flex: 1;
+}
+
+.dashboardGrid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+    .dashboardGrid {
+        grid-template-columns: 1fr;
+    }
+}

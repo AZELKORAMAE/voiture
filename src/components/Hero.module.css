@@ -1,0 +1,123 @@
+.hero {
+    height: 100vh;
+    min-height: 800px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-image: url('/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.2));
+    z-index: 1;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.title {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+}
+
+.title span {
+    color: var(--accent);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 3rem;
+    max-width: 600px;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 1rem;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin-bottom: 2rem;
+}
+
+.searchItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchItem label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+}
+
+.searchItem input {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary);
+    outline: none;
+}
+
+.searchItem input::placeholder {
+    color: rgba(15, 23, 42, 0.5);
+}
+
+.divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(15, 23, 42, 0.1);
+}
+
+.nearMe {
+    display: flex;
+    align-items: center;
+}
+
+.nearMe button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.nearMe button:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .searchBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .divider {
+        display: none;
+    }
+}

@@ -7,7 +7,7 @@ import styles from './Dashboard.module.css';
 
 export default function AdminDashboard() {
     const { data: session, status } = useSession();
-    const [agencies, setAgencies] = useState([]);
+    const [agencies, setAgencies] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 

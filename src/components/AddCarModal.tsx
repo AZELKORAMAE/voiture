@@ -14,11 +14,27 @@ const AddCarModal = ({ onClose, onSuccess }: { onClose: () => void, onSuccess: (
             transmission: 'Automatic',
             fuelType: 'Petrol',
             seats: 5,
-            power: ''
+            power: '',
+            maxSpeed: '',
+            color: '',
+            insuranceType: 'Basic Coverage'
         },
+        visibleFields: ['transmission', 'fuelType', 'seats', 'power', 'maxSpeed', 'color', 'insuranceType'],
         features: []
     });
     const [loading, setLoading] = useState(false);
+
+    const handleVisibilityToggle = (field: string) => {
+        setFormData(prev => {
+            const isVisible = prev.visibleFields.includes(field);
+            return {
+                ...prev,
+                visibleFields: isVisible
+                    ? prev.visibleFields.filter(f => f !== field)
+                    : [...prev.visibleFields, field]
+            };
+        });
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -103,6 +119,44 @@ const AddCarModal = ({ onClose, onSuccess }: { onClose: () => void, onSuccess: (
                         <div className={styles.group}>
                             <label>Seats</label>
                             <input type="number" value={formData.specs.seats} onChange={e => setFormData({ ...formData, specs: { ...formData.specs, seats: parseInt(e.target.value) } })} />
+                        </div>
+                    </div>
+
+                    <div className={styles.row}>
+                        <div className={styles.group}>
+                            <label>Color</label>
+                            <input type="text" value={formData.specs.color} onChange={e => setFormData({ ...formData, specs: { ...formData.specs, color: e.target.value } })} placeholder="e.g. Black" />
+                        </div>
+                        <div className={styles.group}>
+                            <label>Max Speed (Optionnel, ex: 250 km/h)</label>
+                            <input type="text" value={formData.specs.maxSpeed} onChange={e => setFormData({ ...formData, specs: { ...formData.specs, maxSpeed: e.target.value } })} placeholder="e.g. 250 km/h" />
+                        </div>
+                    </div>
+
+                    <div className={styles.row}>
+                        <div className={styles.group} style={{ flex: 1 }}>
+                            <label>Insurance Type</label>
+                            <select value={formData.specs.insuranceType} onChange={e => setFormData({ ...formData, specs: { ...formData.specs, insuranceType: e.target.value } })}>
+                                <option value="Basic Coverage">Basic Coverage</option>
+                                <option value="Full Coverage">Full Coverage (+ Premium)</option>
+                                <option value="Third-Party Only">Third-Party Only</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className={styles.visibilitySection} style={{ marginTop: '1.5rem', padding: '1rem', background: 'var(--foreground)', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+                        <h4 style={{ marginBottom: '1rem', fontSize: '0.9rem', color: 'var(--text-primary)' }}>Select Fields to Display Publicly</h4>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.5rem' }}>
+                            {['transmission', 'fuelType', 'seats', 'color', 'maxSpeed', 'insuranceType'].map(field => (
+                                <label key={field} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', cursor: 'pointer' }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.visibleFields.includes(field)}
+                                        onChange={() => handleVisibilityToggle(field)}
+                                    />
+                                    {field.charAt(0).toUpperCase() + field.slice(1)}
+                                </label>
+                            ))}
                         </div>
                     </div>
 

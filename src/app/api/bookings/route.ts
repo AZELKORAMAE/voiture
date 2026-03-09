@@ -43,6 +43,10 @@ export async function POST(req: NextRequest) {
             receiptUrl: `/receipts/booking-${Date.now()}.pdf` // Mock URL
         });
 
+        // Add to car's unavailability
+        car.availability.push({ startDate: start, endDate: end });
+        await car.save();
+
         return NextResponse.json({
             message: 'Booking successful',
             booking

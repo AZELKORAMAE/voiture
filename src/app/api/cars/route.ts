@@ -13,11 +13,28 @@ export async function GET(req: NextRequest) {
         const lng = searchParams.get('lng');
         const distance = searchParams.get('distance') || '50000'; // Default 50km
 
+        const startDate = searchParams.get('startDate');
+        const endDate = searchParams.get('endDate');
+
         await dbConnect();
 
         let query: any = {};
         if (category) query.category = category;
         if (agencyId) query.agencyId = agencyId;
+
+        if (startDate && endDate) {
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            // $not $elemMatch finds cars that DO NOT have an overlapping booking in their availability array
+            query.availability = {
+                $not: {
+                    $elemMatch: {
+                        startDate: { $lt: end },
+                        endDate: { $gt: start }
+                    }
+                }
+            };
+        }
 
         // Location search
         if (lat && lng) {

@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './Agencies.module.css';
 
+import dynamic from 'next/dynamic';
+
+const AgencyMap = dynamic(() => import('@/components/AgencyMap'), { ssr: false });
+
 export default function AgenciesPage() {
     const [agencies, setAgencies] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -34,28 +38,31 @@ export default function AgenciesPage() {
                 {loading ? (
                     <div className={styles.loader}>Loading trusted agencies...</div>
                 ) : (
-                    <div className={styles.grid}>
-                        {agencies.map((agency: any) => (
-                            <Link href={`/cars?agency=${agency._id}`} key={agency._id} className={styles.card}>
-                                <div className={styles.info}>
-                                    <h3>{agency.name}</h3>
-                                    <div className={styles.address}>
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                            <circle cx="12" cy="10" r="3"></circle>
-                                        </svg>
-                                        {agency.address}
+                    <>
+                        {agencies.length > 0 && <AgencyMap agencies={agencies} />}
+                        <div className={styles.grid}>
+                            {agencies.map((agency: any) => (
+                                <Link href={`/cars?agency=${agency._id}`} key={agency._id} className={styles.card}>
+                                    <div className={styles.info}>
+                                        <h3>{agency.name}</h3>
+                                        <div className={styles.address}>
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                                <circle cx="12" cy="10" r="3"></circle>
+                                            </svg>
+                                            {agency.address}
+                                        </div>
+                                        {agency.description && (
+                                            <p className={styles.description}>{agency.description}</p>
+                                        )}
                                     </div>
-                                    {agency.description && (
-                                        <p className={styles.description}>{agency.description}</p>
-                                    )}
-                                </div>
-                                <div className={styles.action}>
-                                    View Cars &rarr;
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                                    <div className={styles.action}>
+                                        View Cars &rarr;
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </>
                 )}
 
                 {!loading && agencies.length === 0 && (

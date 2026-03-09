@@ -11,7 +11,11 @@ const CarSchema = new Schema({
         fuelType: { type: String, enum: ['Petrol', 'Diesel', 'Electric', 'Hybrid'], required: true },
         seats: { type: Number, required: true },
         power: { type: String }, // e.g., "300 HP"
+        maxSpeed: { type: String }, // e.g., "250 km/h"
+        color: { type: String },
+        insuranceType: { type: String } // e.g., "Full Coverage", "Basic"
     },
+    visibleFields: [{ type: String }], // Array of spec keys that the agency wants to display (e.g., ['transmission', 'seats', 'color'])
     pricePerDay: { type: Number, required: true },
     images: [{ type: String }],
     availability: [{

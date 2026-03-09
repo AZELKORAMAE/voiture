@@ -29,18 +29,24 @@ const CarCard = ({ car }: { car: any }) => {
                 <p className={styles.agency}>{car.agencyId?.name}</p>
 
                 <div className={styles.specs}>
-                    <div className={styles.spec}>
-                        <span className={styles.icon}>⚙️</span>
-                        {car.specs.transmission}
-                    </div>
-                    <div className={styles.spec}>
-                        <span className={styles.icon}>⛽</span>
-                        {car.specs.fuelType}
-                    </div>
-                    <div className={styles.spec}>
-                        <span className={styles.icon}>🪑</span>
-                        {car.specs.seats} Seats
-                    </div>
+                    {(!car.visibleFields || car.visibleFields.includes('transmission')) && (
+                        <div className={styles.spec}>
+                            <span className={styles.icon}>⚙️</span>
+                            {car.specs.transmission}
+                        </div>
+                    )}
+                    {(!car.visibleFields || car.visibleFields.includes('fuelType')) && (
+                        <div className={styles.spec}>
+                            <span className={styles.icon}>⛽</span>
+                            {car.specs.fuelType}
+                        </div>
+                    )}
+                    {(!car.visibleFields || car.visibleFields.includes('seats')) && (
+                        <div className={styles.spec}>
+                            <span className={styles.icon}>🪑</span>
+                            {car.specs.seats} Seats
+                        </div>
+                    )}
                 </div>
 
                 <Link href={`/cars/${car._id}`} className="btn-primary" style={{ width: '100%', textAlign: 'center', marginTop: '1rem' }}>

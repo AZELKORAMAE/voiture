@@ -85,22 +85,48 @@ export default function CarDetailsPage() {
                             <p className={styles.agency}>Managed by <strong>{car.agencyId?.name}</strong></p>
 
                             <div className={styles.specsGrid}>
-                                <div className={styles.specItem}>
-                                    <label>Transmission</label>
-                                    <span>{car.specs.transmission}</span>
-                                </div>
-                                <div className={styles.specItem}>
-                                    <label>Fuel</label>
-                                    <span>{car.specs.fuelType}</span>
-                                </div>
-                                <div className={styles.specItem}>
-                                    <label>Seats</label>
-                                    <span>{car.specs.seats}</span>
-                                </div>
-                                <div className={styles.specItem}>
-                                    <label>Power</label>
-                                    <span>{car.specs.power || 'N/A'}</span>
-                                </div>
+                                {(!car.visibleFields || car.visibleFields.includes('transmission')) && (
+                                    <div className={styles.specItem}>
+                                        <label>Transmission</label>
+                                        <span>{car.specs.transmission}</span>
+                                    </div>
+                                )}
+                                {(!car.visibleFields || car.visibleFields.includes('fuelType')) && (
+                                    <div className={styles.specItem}>
+                                        <label>Fuel</label>
+                                        <span>{car.specs.fuelType}</span>
+                                    </div>
+                                )}
+                                {(!car.visibleFields || car.visibleFields.includes('seats')) && (
+                                    <div className={styles.specItem}>
+                                        <label>Seats</label>
+                                        <span>{car.specs.seats}</span>
+                                    </div>
+                                )}
+                                {((!car.visibleFields && car.specs.power) || (car.visibleFields && car.visibleFields.includes('power') && car.specs.power)) && (
+                                    <div className={styles.specItem}>
+                                        <label>Power</label>
+                                        <span>{car.specs.power}</span>
+                                    </div>
+                                )}
+                                {car.visibleFields && car.visibleFields.includes('maxSpeed') && car.specs.maxSpeed && (
+                                    <div className={styles.specItem}>
+                                        <label>Max Speed</label>
+                                        <span>{car.specs.maxSpeed}</span>
+                                    </div>
+                                )}
+                                {car.visibleFields && car.visibleFields.includes('color') && car.specs.color && (
+                                    <div className={styles.specItem}>
+                                        <label>Color</label>
+                                        <span>{car.specs.color}</span>
+                                    </div>
+                                )}
+                                {car.visibleFields && car.visibleFields.includes('insuranceType') && car.specs.insuranceType && (
+                                    <div className={styles.specItem}>
+                                        <label>Insurance</label>
+                                        <span>{car.specs.insuranceType}</span>
+                                    </div>
+                                )}
                             </div>
 
                             <div className={styles.description}>

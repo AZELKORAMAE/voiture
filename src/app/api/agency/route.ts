@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
         }
 
-        const { name, address, latitude, longitude, description, contactEmail, contactPhone } = await req.json();
+        const { name, address, latitude, longitude, description, contactEmail, contactPhone, mapLink } = await req.json();
 
         await dbConnect();
 
@@ -38,6 +38,7 @@ export async function POST(req: NextRequest) {
             description,
             contactEmail,
             contactPhone,
+            mapLink,
             location: {
                 type: 'Point',
                 coordinates: [longitude, latitude]

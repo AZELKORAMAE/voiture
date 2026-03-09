@@ -4,6 +4,9 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import CarCard from '@/components/CarCard';
 import styles from './Cars.module.css';
+import dynamic from 'next/dynamic';
+
+const AgencyMap = dynamic(() => import('@/components/AgencyMap'), { ssr: false });
 
 function CarsContent() {
     const searchParams = useSearchParams();
@@ -13,6 +16,9 @@ function CarsContent() {
     const agencyParam = searchParams.get('agency');
     const [startDate, setStartDate] = useState(searchParams.get('startDate') || '');
     const [endDate, setEndDate] = useState(searchParams.get('endDate') || '');
+    const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
+
+    const uniqueAgencies = Array.from(new Map(cars.filter((c: any) => c.agencyId).map((c: any) => [c.agencyId._id, c.agencyId])).values());
 
     useEffect(() => {
         fetchCars();
@@ -75,8 +81,37 @@ function CarsContent() {
                     </div>
                 </div>
 
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Showing {cars.length} cars</p>
+                    <div style={{ background: 'var(--border)', padding: '0.25rem', borderRadius: '0.5rem', display: 'inline-flex' }}>
+                        <button
+                            onClick={() => setViewMode('list')}
+                            style={{ padding: '0.5rem 1rem', borderRadius: '0.35rem', fontSize: '0.875rem', fontWeight: 600, background: viewMode === 'list' ? 'var(--background)' : 'transparent', color: viewMode === 'list' ? 'var(--foreground)' : 'var(--text-muted)' }}
+                        >
+                            List View
+                        </button>
+                        <button
+                            onClick={() => setViewMode('map')}
+                            style={{ padding: '0.5rem 1rem', borderRadius: '0.35rem', fontSize: '0.875rem', fontWeight: 600, background: viewMode === 'map' ? 'var(--background)' : 'transparent', color: viewMode === 'map' ? 'var(--foreground)' : 'var(--text-muted)' }}
+                        >
+                            Map View
+                        </button>
+                    </div>
+                </div>
+
                 {loading ? (
                     <div className={styles.loader}>Searching for the best deals...</div>
+                ) : viewMode === 'map' ? (
+                    uniqueAgencies.length > 0 ? (
+                        <div style={{ marginBottom: '2rem' }}>
+                            <AgencyMap agencies={uniqueAgencies} />
+                        </div>
+                    ) : (
+                        <div className={styles.empty}>
+                            <h2>No locations found</h2>
+                            <p>Try adjusting your search filters.</p>
+                        </div>
+                    )
                 ) : (
                     <div className={styles.grid}>
                         {cars.map((car: any) => (

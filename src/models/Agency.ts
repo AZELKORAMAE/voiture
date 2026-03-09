@@ -9,6 +9,7 @@ const AgencySchema = new Schema({
         type: { type: String, enum: ['Point'], default: 'Point' },
         coordinates: { type: [Number], required: true } // [longitude, latitude]
     },
+    mapLink: { type: String }, // User requested Google Maps link
     contactEmail: { type: String },
     contactPhone: { type: String },
     rating: { type: Number, default: 0 },

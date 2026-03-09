@@ -23,6 +23,7 @@ export default function AgencyDashboard() {
         description: '',
         contactEmail: '',
         contactPhone: '',
+        mapLink: '',
         latitude: 0,
         longitude: 0
     });
@@ -163,6 +164,15 @@ export default function AgencyDashboard() {
                                     value={formData.address}
                                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                                     placeholder="123 Luxury Ave, Casablanca, Morocco"
+                                />
+                            </div>
+                            <div className={agencyStyles.inputGroup} style={{ marginTop: '1rem' }}>
+                                <label>Google Maps Link (Optional)</label>
+                                <input
+                                    type="url"
+                                    value={formData.mapLink}
+                                    onChange={(e) => setFormData({ ...formData, mapLink: e.target.value })}
+                                    placeholder="https://maps.app.goo.gl/..."
                                 />
                             </div>
                             <div className={agencyStyles.geoInputs} style={{ marginTop: '1rem' }}>

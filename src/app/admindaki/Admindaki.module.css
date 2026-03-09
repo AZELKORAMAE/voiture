@@ -7,7 +7,7 @@
 
 .title {
     font-size: 2.5rem;
-    color: var(--text-primary);
+    color: var(--foreground);
     margin-bottom: 0.5rem;
     font-weight: 800;
     letter-spacing: -0.5px;
@@ -18,7 +18,7 @@
 }
 
 .subtitle {
-    color: var(--text-secondary);
+    color: var(--text-muted);
     margin-bottom: 2.5rem;
     font-size: 1rem;
 }
@@ -34,7 +34,7 @@
 .tabBtn {
     background: transparent;
     border: none;
-    color: var(--text-secondary);
+    color: var(--text-muted);
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
@@ -44,8 +44,8 @@
 }
 
 .tabBtn:hover {
-    color: var(--text-primary);
-    background: var(--foreground);
+    color: var(--foreground);
+    background: var(--background);
 }
 
 .activeTab {
@@ -54,7 +54,7 @@
 }
 
 .section {
-    background: var(--foreground);
+    background: var(--background);
     border: 1px solid var(--border);
     border-radius: 1rem;
     padding: 2rem;
@@ -71,7 +71,7 @@
 .table th {
     text-align: left;
     padding: 1rem 1.5rem;
-    color: var(--text-secondary);
+    color: var(--text-muted);
     font-weight: 600;
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -82,7 +82,7 @@
 .table td {
     padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--border);
-    color: var(--text-primary);
+    color: var(--foreground);
     font-size: 0.95rem;
     vertical-align: middle;
 }
@@ -151,7 +151,7 @@
 }
 
 .suspend {
-    background: var(--foreground);
+    background: transparent;
     color: #6c757d;
     border: 1px solid #6c757d;
 }
@@ -178,6 +178,6 @@
 }
 
 .bookingDetail span {
-    color: var(--text-secondary);
+    color: var(--text-muted);
     font-size: 0.85rem;
 }
